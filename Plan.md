@@ -8,28 +8,33 @@
 * Higher order functions
 * Matematiske abstraksjoner
 
-# Problemer Kotlin
+# Problemer med vanlige datastrukturer i en funksjonell setting
 
 * Performance - kopiering
+* Kotlin std-lib eksempel
 
 
 
 # Hva er galt 
+* 
 
 
 ## Vanlig algoritmer / datastrukturer
-* Muturer
+* Mutasjon
   ArrayList.add
+* Arrays
 
 
 ## Persistant data structures
 * Sharing
 
 
-
-
 ## Lister
 
+[] | a : [a]
+ 
+class Nil : List
+data class Cons(head:Int, tail:List)
 
 ## Snoc
 
@@ -52,10 +57,10 @@
 * Fold / reduce - Foldable
 * union, difference, - with, With
 
-## Ligninger. Generelle eggenskaper
+## Ligninger. Generelle egenskaper. Kanskje
 
 * Kjekt for testing (property testing)
-
+* 
 
 ## Verifiserte datastrukturer
 * Parse, don't validate

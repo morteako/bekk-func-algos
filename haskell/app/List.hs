@@ -15,7 +15,7 @@ reverse = error "TODO reverse"
 
 -- #Rev 3
 -- Skriv reverse på nytt, men en mer optimal versjon
--- Hint : bruk lag enda en funksjon (gjerne internt i reverse')
+-- Hint : lag enda en funksjon (gjerne internt i reverse')
 reverse' :: [a] -> [a]
 reverse' = error "TODO reverse"
 
