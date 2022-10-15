@@ -1,3 +1,2 @@
 Plan.md
-dist
-dist-*
+haskell/dist*
