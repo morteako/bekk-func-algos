@@ -1,6 +1,10 @@
 module List where
 
 import Prelude hiding (reverse)
+import Test.QuickCheck ( (===), Property )
+import qualified Data.List as L
+import TestUtil ( quickcheckWithLabel )
+
 
 
 -- #Rev 1
@@ -19,5 +23,16 @@ reverse = error "TODO reverse"
 reverse' :: [a] -> [a]
 reverse' = error "TODO reverse"
 
+---------
+
+prop_reverse :: [Int] -> Property
+prop_reverse xs = L.reverse xs === reverse xs
+
+prop_reverse' :: [Int] -> Property
+prop_reverse' xs = L.reverse xs === reverse' xs
+
+
 main :: IO ()
-main = putStrLn "Hello, Haskell!"
+main = do
+    quickcheckWithLabel "prop_reverse" prop_reverse
+    quickcheckWithLabel "prop_reverse'" prop_reverse'

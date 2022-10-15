@@ -2,9 +2,11 @@ module NonEmpty where
 
 import qualified Data.List as L
 import Test.QuickCheck (quickCheck, Arbitrary(..))
-import Test.QuickCheck.Test
-import Test.QuickCheck.Property
+
+import Test.QuickCheck.Property ( (===), Property )
 import Test.HUnit
+    ( assertEqual, runTestTT, Test(TestCase, TestList, TestLabel) )
+import TestUtil (quickcheckWithLabel)
 
 data NonEmpty a = a :| [a] deriving (Show,Eq)
 
@@ -70,12 +72,6 @@ instance Arbitrary a => Arbitrary (NonEmpty a) where
 
 testPartitionRes = TestList [TestLabel "partionres" $ TestCase (assertEqual "partionres" ([1, 3], [4, 2]) partitionres)]
 
-quickcheckWithLabel str q = do
-    putStrLn $ "Testing " <> str <> replicate (40 - length str) '-'
-    quickCheck q
-    putStrLn $ "DONE    " <> str <> replicate (40 - length str) '-'
-
-
 
 prop_prepend :: [Int] -> NonEmpty Int -> Property  
 prop_prepend xs ys = toList (prependList xs ys) === (xs ++ toList ys)
@@ -94,5 +90,3 @@ main = do
     quickcheckWithLabel "prep_prepend" prop_prepend
     runTestTT testPartitionRes
     quickcheckWithLabel "prop_partition'" prop_partition'
-    pure ()
-    print $ L.partition (>5) [1..10]

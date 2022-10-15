@@ -4,7 +4,7 @@
 
 # Relevante prinsipper i funksjonell programmering
 * Pure functions og da ingen mutering
-* Korrekthet
+* Korrekthet, presis
 * Higher order functions
 * Matematiske abstraksjoner
 
@@ -60,7 +60,9 @@ data class Cons(head:Int, tail:List)
 ## Ligninger. Generelle egenskaper. Kanskje
 
 * Kjekt for testing (property testing)
-* 
+* reverse (reverse liste) = liste
+* not (not b) = b
+* elem b (insert b m) = True
 
 ## Verifiserte datastrukturer
 * Parse, don't validate
@@ -83,6 +85,8 @@ data class Cons(head:Int, tail:List)
 * filter
   
 * Maybe (NonEmpty a) ~ [a]
+
+# Konklusjon / Oppsummering
 
 ## Oppgaver
 

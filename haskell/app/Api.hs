@@ -1,4 +1,4 @@
-module Main where
+module Api where
 
 import qualified Data.Map.Strict as Map
 

@@ -33,5 +33,5 @@ library
     build-depends:    base, containers, QuickCheck, HUnit,
     hs-source-dirs:   app
     default-language: Haskell2010
-    exposed-modules:  NonEmpty
+    exposed-modules:  NonEmpty, TestUtil, Main, List, Api
     -- other-modules:       MyLib.NotExposed.ExecShouldntCare
