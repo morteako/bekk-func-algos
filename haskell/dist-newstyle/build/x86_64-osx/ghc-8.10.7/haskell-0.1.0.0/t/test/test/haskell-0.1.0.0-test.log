@@ -1,5 +1,0 @@
-Test suite test: RUNNING...
-*** Failed! Falsified (after 5 tests and 4 shrinks):
-[0,1]
-Test suite test: PASS
-Test suite logged to: /Users/mortenkolstad/func-algos/haskell/dist-newstyle/build/x86_64-osx/ghc-8.10.7/haskell-0.1.0.0/t/test/test/haskell-0.1.0.0-test.log
