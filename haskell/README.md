@@ -1,12 +1,14 @@
 # Funksjonelle algoritmer og datastrukturer, ish
 
-## Innhold og forslag til rekkefølge 
+
+## Oppgaver: Innhold og forslag til rekkefølge 
 * List - vanlige rekursive lenkelister
 * NonEmpty - non-empty lister
 * Api - funksjoner i Map-apiet og algebraiske ligninger
 
-Kan åpenbart gjøres i rekkefølgen man selv velger også
+Kan åpenbart gjøres i rekkefølgen man selv velger også.
 
+### Oppgaver er som regel å fylle inn `error "todo"` med noe vettugt
 
 
 ## Bygg, kjøring og testing

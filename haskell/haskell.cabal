@@ -16,11 +16,6 @@ version:            0.1.0.0
 author:             Morten Kolstad
 maintainer:         morten.kolstad@bekk.no
 
--- A copyright notice.
--- copyright:
--- category:
-extra-source-files: CHANGELOG.md
-
 
 
 executable lib
