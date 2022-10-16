@@ -95,6 +95,16 @@ data class Cons(head:Int, tail:List)
 union
 unionWith / diff / intersec
 
+-- combineWithLefts
+combineWithLefts = Map.unionWith (\a _ -> a) map1 map2
+
+-- combineWithRights
+combineWithRights = Map.unionWith (\_ b -> b) map1 map2
+
+-- combineWithTuple
+combineWithTuple = Map.intersectionWith (\a b -> (a, b)) map1 map2
+
+
 
 ### Sharing
 
@@ -115,3 +125,4 @@ groupBy :: (a -> a -> Bool) -> NonEmpty a -> TODO
 
 ## Ekstra lesning 
 Okasaki
+Algorithm design in Haskell
