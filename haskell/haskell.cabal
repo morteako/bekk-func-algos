@@ -22,16 +22,10 @@ maintainer:         morten.kolstad@bekk.no
 extra-source-files: CHANGELOG.md
 
 
-library
-    -- main-is:          Main.hs
 
-    -- Modules included in this executable, other than Main.
-    -- other-modules:
-
-    -- LANGUAGE extensions used by modules in this package.
-    -- other-extensions:
+executable lib
+    main-is: Main.hs
     build-depends:    base, containers, QuickCheck, HUnit,
-    hs-source-dirs:   app
+    hs-source-dirs:   lib
     default-language: Haskell2010
-    exposed-modules:  NonEmpty, TestUtil, Main, List, Api
-    -- other-modules:       MyLib.NotExposed.ExecShouldntCare
+    other-modules: Api,List, NonEmpty, TestUtil        
