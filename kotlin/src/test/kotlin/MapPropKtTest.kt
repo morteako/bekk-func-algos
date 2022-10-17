@@ -25,6 +25,15 @@ internal class MapPropKtTest : StringSpec({
         }
     }
 
+    "intersectioonWith contains intersection of keys" {
+        checkAll(mapArb, mapArb) { m1, m2 ->
+            val actual = m1.keys intersect m2.keys
+            val expected = m1.intersectionWith(m2) { _, b -> b }.keys
+            assertThat(actual).isEqualTo(expected)
+        }
+    }
+
+
 }
 )
 
