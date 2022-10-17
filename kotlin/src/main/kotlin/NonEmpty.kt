@@ -11,9 +11,10 @@ data class NonEmpty<A>(val head:A, val tail:List<A>) {
 //-- Implementer en funksjon som appender en List foran på en NonEmpty List
 //-- Ex
 //-- NonEmpty(4,[5]).prependList(listOf[1,2,3])  = NonEmpty(1,[2,3,4,5])
-fun <A> NonEmpty<A>.prependList(list:List<A>):NonEmpty<A> {
-    TODO("prependList")
-}
+fun <A> NonEmpty<A>.prependList(list:List<A>):NonEmpty<A> = when {
+        list.isEmpty() -> this
+        else -> NonEmpty(list.first(), list.drop(1) + this.toList())
+    }
 
 //-- vi kan definere partition ved å gjenbruke partition for vanlige lister
 fun <A> NonEmpty<A>.partition(pred:(A) -> Boolean):Pair<List<A>,List<A>> = this.toList().partition(pred)
@@ -21,8 +22,13 @@ fun <A> NonEmpty<A>.partition(pred:(A) -> Boolean):Pair<List<A>,List<A>> = this.
 //-- gi en NonEmpty<Int> slik at partitionres = ([1,3],[4,2])
 // altså bytt ut  NonEmpty(0, listOf())
 // hvor mange riktige svar finnes?
-val partitionres : Pair<List<Int>,List<Int>> = NonEmpty(0, listOf()).partition { it % 2 == 1 }
-
+val partitionres : Pair<List<Int>,List<Int>> = NonEmpty(1, listOf(3,4,2)).partition { it % 2 == 1 }
+//NonEmpty(1, listOf(3,4,2)
+//NonEmpty(1, listOf(4,3,2)
+//NonEmpty(1, listOf(4,2,3)
+//NonEmpty(4, listOf(1,2,3)
+//NonEmpty(4, listOf(2,1,3)
+//NonEmpty(4, listOf(1,3,2)
 
 //
 //-- #partition 2
@@ -37,10 +43,14 @@ val partitionres : Pair<List<Int>,List<Int>> = NonEmpty(0, listOf()).partition {
 
 
 
-typealias ResType<A> = Unit
+typealias ResType<A> = Either<Pair<NonEmpty<A>,List<A>>, Pair<List<A>,NonEmpty<A>>>
 
 fun <A> NonEmpty<A>.partition2(pred:(A) -> Boolean):ResType<A> {
-    TODO("partition2")
+    val (pos, negs) = this.tail.partition(pred)
+    return when(pred(this.head)) {
+        true -> Either.Left(NonEmpty(this.head, pos) to negs)
+        false -> Either.Right(pos to NonEmpty(this.head, negs) )
+    }
 }
 
 //-- #partition 3
@@ -60,5 +70,14 @@ fun <A> toNonEmpty(lists:Pair<List<A>,List<A>>) : NonEmpty<A>? {
     }
 }
 fun <A> toNonEmpty2(lists:ResType<A>) : NonEmpty<A> {
-    TODO("toNonEmpty2")
+    return when(lists) {
+        is Either.Left -> {
+            val (ne,xs) = lists.value
+            NonEmpty(ne.head, ne.tail + xs)
+        }
+        is Either.Right -> {
+            val (xs,ne) = lists.value
+            ne.prependList(xs)
+        }
+    }
 }
