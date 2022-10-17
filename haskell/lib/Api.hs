@@ -20,7 +20,7 @@ maps =
 -- altså summere valuene
 -- Bruk gjerne reduce/fold
 combinedMaps :: Map.Map String Int
-combinedMaps = error "combinedMaps todo"
+combinedMaps = foldr (Map.unionWith (+)) Map.empty maps
 
 -- Bruk intersectionWith til å kombinere imap1 og imap2
 -- Her skal du samle opp alle tallene(verdiene i mapsene) i lista for keysene som finnes i begge maps
@@ -34,7 +34,7 @@ imap2 =
 
 intersectedMaps :: Map.Map String [Int]
 intersectedMaps =
-    error "intersectedMaps todo"
+    Map.intersectionWith (\a b -> [a, b]) imap1 imap2
 
 -------------------------
 -- Algebraiske egenskaper

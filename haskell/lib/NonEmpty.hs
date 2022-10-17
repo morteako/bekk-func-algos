@@ -15,16 +15,18 @@ data NonEmpty a = a :| [a] deriving (Show,Eq)
 -- Ex
 -- prependList [1,2,3] (4:|[5]) = 1:|[2,3,4,5]
 prependList :: [a] -> NonEmpty a -> NonEmpty a
-prependList = error "prependList todo"
+prependList [] ys = ys
+prependList (x:xs) (y :| ys) = x :| (xs ++ (y:ys))
 
 
+-- #partition 1
 -- vi kan definere partition ved å gjenbruke partition for vanlige lister
 partition :: (a -> Bool) -> NonEmpty a -> ([a], [a])
 partition p (x:|xs) = L.partition p (x:xs)
 
 -- gi en NonEmpty Int slik at partitionres = ([1,3],[4,2])
 partitionres :: ([Int], [Int])
-partitionres = partition odd (error "partitionres todo")
+partitionres = partition odd (1 :| [4,3,2])
 
 -- #partition 2
 -- returtypen til partition ovenfor er lett å bruke, men vi mister litt informasjon
@@ -35,10 +37,12 @@ partitionres = partition odd (error "partitionres todo")
 -- tips : bruk L.partition p xs for å gjøre grovjobben
 -- se også oppgaven under først
 
-type ResType a = () -- TODO
+type ResType a = Either (NonEmpty a, [a]) ([a], NonEmpty a)
 
 partition' :: (a -> Bool) -> NonEmpty a -> ResType a
-partition' = error "partition' todo"
+partition' p (x :| xs) = if p x then Left (x :| ps,nps) else Right (ps, x :| nps) 
+    where
+        (ps, nps) = L.partition p xs
 
 -- #partition 3
 -- Vi kan tenke at vi vil gå konverte resultatet fra partion' tilbake til en NonEmpty
@@ -54,7 +58,8 @@ toNonEmpty ([], y:ys) = Just $ y :| ys
 toNonEmpty ([], []) = Nothing
 
 toNonEmpty' :: ResType a -> NonEmpty a
-toNonEmpty' = error "toNonEmpty' todo"
+toNonEmpty' (Left (x :| xs, ys)) = x :| (xs ++ ys)
+toNonEmpty' (Right (xs, ys)) = prependList xs ys
 
 ----------------------
 ---TESTS
