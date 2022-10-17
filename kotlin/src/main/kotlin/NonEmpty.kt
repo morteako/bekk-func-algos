@@ -20,7 +20,8 @@ fun <A> NonEmpty<A>.partition(pred:(A) -> Boolean):Pair<List<A>,List<A>> = this.
 
 //-- gi en NonEmpty<Int> slik at partitionres = ([1,3],[4,2])
 // altså bytt ut  NonEmpty(0, listOf())
-val partitionres : Pair<List<Int>,List<Int>> = TODO("partitionres")
+// hvor mange riktige svar finnes?
+val partitionres : Pair<List<Int>,List<Int>> = NonEmpty(0, listOf()).partition { it % 2 == 1 }
 
 
 //
