@@ -16,3 +16,4 @@ https://plugins.jetbrains.com/plugin/14080-kotest
 * Kjør all testene : `gradle test`
 * Kjør testene for hver filendring:`gradle test -t`
 * (Bare kommenter ut de testene man ikke vil kjøre)
+* Spesifikke tester: `gradle test --tests "NonEmptyKtTest"` osv
